@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, status
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, EmailStr
 from typing import List
 
@@ -24,7 +25,6 @@ def create_user(user: User):
     return user
 
 #Crear mas de un usuario 
-
 @app.post("/users/bulk", status_code=201)
 def create_users(users_list: List[User]):
     existing_emails = [u.email for u in users]
@@ -45,13 +45,15 @@ def create_users(users_list: List[User]):
 def get_users():
     return users
 
-
 #Obtener usuarios por ID
 @app.get("/users/{user_id}")
 def get_users(user_id:int):
     for user in users:
         if user.id == user_id:
             return user
+
+    raise HTTPException(status_code=404,detail="Usuario no valido")
+    
         
 #Actualizar usuario
 @app.put("/users/{user_id}")
@@ -63,11 +65,11 @@ def update_user(user_id: int, updated_user: User):
 
     raise HTTPException(status_code=404, detail="Usuario no encontrado")
 
-@app.delete("/users/{user_id}")
+@app.delete("/users/{user_id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_user(user_id: int):
     for index, user in enumerate(users):
         if user.id == user_id:
             users.pop(index)
-            return {"message": "Usuario eliminado"}
+            return 
 
     raise HTTPException(status_code=404, detail="Usuario no encontrado")
