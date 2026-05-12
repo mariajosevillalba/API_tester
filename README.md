@@ -224,3 +224,4 @@ Todos los tests deben pasar correctamente
 * Agregar nuevos campos al modelo
 * Implementar validaciones adicionales
 * Mejorar cobertura de pruebas
+

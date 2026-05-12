@@ -1,5 +1,8 @@
-fastapi==0.110.0
-uvicorn==0.29.0
-pytest==8.2.0
-httpx==0.27.0
-pydantic[email]==2.7.0
+fastapi
+uvicorn
+pytest
+httpx
+pydantic[email]
+sqlalchemy
+psycopg2-binary
+python-dotenv

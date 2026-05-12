@@ -1,10 +1,10 @@
-# tests/test_users.py
+# tests/test_tasks.py
 
 from fastapi.testclient import TestClient
 from app.main import app
 
 client = TestClient(app)
 
-def test_get_users():
-    response = client.get("/users")
+def test_get_tasks():
+    response = client.get("/tasks")
     assert response.status_code == 200
